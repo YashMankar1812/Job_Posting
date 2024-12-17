@@ -1,11 +1,23 @@
 import express from "express";
 import dotenv from 'dotenv';
+import mongoose from 'mongoose';
 import { createJobPostingController, deleteJobPostingController, displayJobPostings, getJobPostingController, updateJobPostingController } from "./controller/controller.js";
 
-dotenv .config();
+dotenv.config();
 const app = express();
 
-const PORT = process.env.PORT || 0;
+
+
+try{
+  await mongoose.connect('mongodb://localhost:27017/');
+  console.log('Connected to MongoDB');
+
+}catch(error){
+  console.error('Failed to connect to MongoDB');
+  process.exit(1);
+}
+
+const PORT = process.env.PORT || 4000;
 // Middleware 
 app.set('view engine', 'ejs');
 // app.set('views', path.join(__views, 'views'));

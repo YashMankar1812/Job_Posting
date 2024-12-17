@@ -1,16 +1,5 @@
-import mongoose from 'mongoose';
 
-// Connect to Mongoose 
-try{
-    await mongoose.connect('mongodb://localhost:27017/');
-    console.log('Connected to MongoDB');
-
-}catch(error){
-    console.error('Failed to connect to MongoDB');
-    process.exit(1);
-}
-
-// Define the JobPosting schema
+import mongoose from'mongoose';
 
 const jobSchema = new mongoose.Schema({
     title: { type: String, required: true },
