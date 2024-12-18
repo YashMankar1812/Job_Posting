@@ -1,22 +1,26 @@
 import express from "express";
 import dotenv from 'dotenv';
 import mongoose from 'mongoose';
+import cors from "cors";
 import { createJobPostingController, deleteJobPostingController, displayJobPostings, getJobPostingController, updateJobPostingController } from "./controller/controller.js";
 
 dotenv.config();
 const app = express();
 
+app.use(cors({
+  origin: "https://job-posting-1.onrender.com",
+  credentials: true, 
+}));
 
 
 try{
-  await mongoose.connect(process.env.MONGO_URL).then(() => {
+  await mongoose.connect(process.env.MONGO_URL).then((res) => {
     console.log('Connected to MongoDB');
 
   });
 
 }catch(error){
-
-  console.error('Failed to connect to MongoDB');
+  console.error(error);
   process.exit(1);
 }
 
