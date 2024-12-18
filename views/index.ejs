@@ -191,7 +191,7 @@ form#jobForm button:hover {
             try {
                 const jobListParent = document.getElementById('jobList');
                 jobListParent.innerHTML = ""; // Clear previous jobs
-                const jobList = await fetch('http://localhost:4000/api/jobs');
+                const jobList = await fetch('https://job-posting-1.onrender.com/api/jobs');
                 for (const singleJob of await jobList.json()) {
                     const singleJobDiv = document.createElement('div');
                     singleJobDiv.classList.add('single-job-data');
@@ -229,7 +229,7 @@ form#jobForm button:hover {
         // Delete a job
         const deleteJob = async (jobId) => {
             try {
-                await fetch(`http://localhost:4000/api/jobs/${jobId}`, { method: 'DELETE' });
+                await fetch(`https://job-posting-1.onrender.com/api/jobs/${jobId}`, { method: 'DELETE' });
                 fetchJobs();
             } catch (e) {
                 console.log(e);
@@ -240,7 +240,7 @@ form#jobForm button:hover {
         // Create a job
         const createJob = async (jobData) => {
             try {
-                await fetch('http://localhost:4000/api/jobs', {
+                await fetch('https://job-posting-1.onrender.com/api/jobs', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify(jobData)
@@ -260,7 +260,7 @@ form#jobForm button:hover {
             const newLocation = prompt("Enter new location:", currentJobData.location) || currentJobData.location;
 
             try {
-                await fetch(`http://localhost:4000/api/jobs/${jobId}`, {
+                await fetch(`https://job-posting-1.onrender.com/api/jobs/${jobId}`, {
                     method: 'PUT',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({
